@@ -1,5 +1,3 @@
--- WezTerm Keybindings Documentation by dragonlobster
--- ===================================================
 -- Leader Key:
 -- The leader key is set to ALT + q, with a timeout of 2000 milliseconds (2 seconds).
 -- To execute any keybinding, press the leader key (ALT + q) first, then the corresponding key.
