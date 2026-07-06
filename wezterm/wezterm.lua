@@ -1,3 +1,5 @@
+-- wezterm by SoyITPro
+
 -- Leader Key:
 -- The leader key is set to ALT + q, with a timeout of 2000 milliseconds (2 seconds).
 -- To execute any keybinding, press the leader key (ALT + q) first, then the corresponding key.
@@ -26,21 +28,17 @@
 --    - LEADER + UpArrow: Increase the pane size upward by 5 units.
 
 -- 5. Status Line:
---    - The status line indicates when the leader key is active, displaying an ocean wave emoji (🌊).
+--    - The status line indicates when the leader key is active, displaying an ocean wave emoji (🚀).
 
 -- Miscellaneous Configurations:
 -- - Tabs are shown even if there's only one tab.
 -- - The tab bar is located at the bottom of the terminal window.
 -- - Tab and split indices are zero-based.
 
--- Pull in the wezterm API
 local wezterm = require("wezterm")
 
--- This table will hold the configuration.
 local config = {}
 
--- In newer versions of wezterm, use the config_builder which will
--- help provide clearer error messages
 if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
@@ -49,47 +47,26 @@ end
 config.max_fps = 240
 config.animation_fps = 240
 
---[[
-============================
-Custom Configuration
-============================
-]]
---
-config.window_background_opacity = 0.95
--- Rounded or Square Style Tabs
+-- Custom Configuration
 
--- change to square if you don't like rounded tab style
+config.window_background_opacity = 0.95
 local tab_style = "square"
 
 -- leader active indicator prefix
-local leader_prefix = utf8.char(0x1f30a) -- ocean wave
+local leader_prefix = utf8.char(0x1f680) -- ocean wave
 
---[[
-============================
-Font
-============================
-]]
---
+-- Fuente
 
 config.font = wezterm.font_with_fallback({ "0xProto Nerd Font Mono", "JetBrains Mono NL" })
 config.font_size = 20
 
 config.window_decorations = "RESIZE"
 
---[[
-============================
-Colors
-============================
-]]
---
+-- Colores
 
 local color_scheme = "Catppuccin Macchiato"
 config.color_scheme = color_scheme
 
--- color_scheme not sufficient in providing available colors
--- local colors = wezterm.color.get_builtin_schemes()[color_scheme]
-
--- color scheme colors for easy access
 local scheme_colors = {
 	catppuccin = {
 		macchiato = {
@@ -122,12 +99,7 @@ local colors = {
 	arrow_background_leader = scheme_colors.catppuccin.macchiato.crust,
 }
 
---[[
-============================
-Border
-============================
-]]
---
+-- Borde ventana
 
 config.window_frame = {
 	border_left_width = "0.4cell",
@@ -140,14 +112,8 @@ config.window_frame = {
 	border_top_color = colors.border,
 }
 
---[[
-============================
-Shortcuts
-============================
-]]
---
+-- Atajos de teclado
 
--- shortcut_configuration
 config.leader = { key = "a", mods = "ALT", timeout_milliseconds = 2000 }
 config.keys = {
 	{
@@ -231,14 +197,8 @@ for i = 0, 9 do
 	})
 end
 
---[[
-============================
-Tab Bar
-============================
-]]
---
-
 -- tab bar
+
 config.hide_tab_bar_if_only_one_tab = false
 config.tab_bar_at_bottom = true
 config.use_fancy_tab_bar = false
@@ -286,12 +246,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 	end
 end)
 
---[[
-============================
-Leader Active Indicator
-============================
-]]
---
+-- Leader Active Indicator
 
 wezterm.on("update-status", function(window, _)
 	-- leader inactive
@@ -332,5 +287,4 @@ wezterm.on("update-status", function(window, _)
 	}))
 end)
 
--- and finally, return the configuration to wezterm
 return config
