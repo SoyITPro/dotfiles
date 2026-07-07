@@ -43,7 +43,7 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
--- max fps
+-- Configuracion FPS terminal
 config.max_fps = 240
 config.animation_fps = 240
 
