@@ -58,7 +58,7 @@ local leader_prefix = utf8.char(0x1f680) -- ocean wave
 -- Fuente
 
 config.font = wezterm.font_with_fallback({ "0xProto Nerd Font Mono", "JetBrains Mono NL" })
-config.font_size = 20
+config.font_size = 18
 
 config.window_decorations = "RESIZE"
 
