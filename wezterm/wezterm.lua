@@ -43,6 +43,18 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
+-- Detectar si estamos en Windows
+local is_windows = wezterm.target_triple and string.find(wezterm.target_triple, "windows") ~= nil
+
+if is_windows then
+	-- En Windows: usar PowerShell 7
+	config.default_prog = { "pwsh.exe", "-NoLogo" }
+else
+	-- En Linux: usar bash (o el que prefieras)
+	-- config.default_prog = { "/bin/bash" }
+	-- Si no defines default_prog, usará el shell por defecto del sistema
+end
+
 -- Configuracion FPS terminal
 config.max_fps = 240
 config.animation_fps = 240
